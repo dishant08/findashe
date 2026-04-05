@@ -1,7 +1,7 @@
 // Mock transaction data — 30 realistic transactions across 3 months
 const mockTransactions = [
   // ─── January 2025 ───
-  { id: 'tx-001', date: '2025-01-05', description: 'Monthly Salary — TechCorp', amount: 85000, category: 'Salary', type: 'income' },
+  { id: 'tx-001', date: '2025-01-05', description: 'Monthly Salary — TecCorp', amount: 85000, category: 'Salary', type: 'income' },
   { id: 'tx-002', date: '2025-01-07', description: 'Uber Ride to Airport', amount: 1250, category: 'Transport', type: 'expense' },
   { id: 'tx-003', date: '2025-01-10', description: 'Swiggy — Weekly Groceries', amount: 3400, category: 'Food', type: 'expense' },
   { id: 'tx-004', date: '2025-01-12', description: 'Netflix Subscription', amount: 649, category: 'Entertainment', type: 'expense' },
