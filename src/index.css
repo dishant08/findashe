@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   NexFin Design System — Bloomberg meets Fintech
+   ═══════════════════════════════════════════════════════ */
+
+@theme {
+  /* Core palette */
+  --color-void: #0a0e17;
+  --color-abyss: #0d1120;
+  --color-deep: #111827;
+  --color-surface: #1a2035;
+  --color-elevated: #222940;
+  --color-border: #2a3352;
+  --color-border-light: #384260;
+
+  /* Accent colors */
+  --color-cyan: #00e5ff;
+  --color-cyan-dim: #00b8d4;
+  --color-cyan-glow: rgba(0, 229, 255, 0.15);
+  --color-amber: #ffab00;
+  --color-amber-dim: #ff8f00;
+  --color-amber-glow: rgba(255, 171, 0, 0.15);
+
+  /* Semantic */
+  --color-profit: #00e676;
+  --color-profit-dim: #00c853;
+  --color-profit-glow: rgba(0, 230, 118, 0.12);
+  --color-loss: #ff1744;
+  --color-loss-dim: #d50000;
+  --color-loss-glow: rgba(255, 23, 68, 0.12);
+
+  /* Text hierarchy */
+  --color-text-primary: #e8ecf4;
+  --color-text-secondary: #8b95b0;
+  --color-text-muted: #5c6580;
+
+  /* Fonts */
+  --font-heading: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ─── Base ─── */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 229, 255, 0.015) 2px,
+    rgba(0, 229, 255, 0.015) 4px
+  );
+}
+
+/* Grid texture on main */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(42, 51, 82, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 51, 82, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyss);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-light);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up {
+  animation: fadeSlideUp 0.5s ease-out forwards;
+}
+.animate-fade-down {
+  animation: fadeSlideDown 0.4s ease-out forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.animate-count-up {
+  animation: countUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-slide-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+
+/* ─── Card styles ─── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+.card:hover {
+  border-color: var(--color-border-light);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+}
+
+/* ─── Glow effects ─── */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2), inset 0 0 15px rgba(0, 229, 255, 0.05);
+}
+.glow-amber {
+  box-shadow: 0 0 15px rgba(255, 171, 0, 0.2), inset 0 0 15px rgba(255, 171, 0, 0.05);
+}
+.glow-profit {
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.2), inset 0 0 15px rgba(0, 230, 118, 0.05);
+}
+.glow-loss {
+  box-shadow: 0 0 15px rgba(255, 23, 68, 0.2), inset 0 0 15px rgba(255, 23, 68, 0.05);
+}
+
+/* ─── Modal backdrop ─── */
+.modal-backdrop {
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+/* ─── Progress bar ─── */
+.progress-bar-track {
+  background: var(--color-elevated);
+  overflow: hidden;
+}
+.progress-bar-fill {
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Custom select ─── */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238b95b0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* ─── Tooltip-like hover labels ─── */
+.data-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ─── Table row transitions ─── */
+.tx-row {
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.tx-row:hover {
+  background-color: var(--color-elevated) !important;
+  transform: translateX(2px);
+}
+
+/* ─── Responsive grid areas ─── */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─── Light mode support ─── */
+.light-mode {
+  --color-void: #f0f2f5;
+  --color-abyss: #e8eaed;
+  --color-deep: #ffffff;
+  --color-surface: #ffffff;
+  --color-elevated: #f5f6f8;
+  --color-border: #d4d8e0;
+  --color-border-light: #bbc0cc;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-cyan: #0087a8;
+  --color-cyan-dim: #006680;
+  --color-cyan-glow: rgba(0, 135, 168, 0.12);
+  --color-amber: #c77d00;
+  --color-amber-dim: #a66800;
+  --color-amber-glow: rgba(199, 125, 0, 0.12);
+  --color-profit: #00875a;
+  --color-profit-dim: #006644;
+  --color-profit-glow: rgba(0, 135, 90, 0.1);
+  --color-loss: #cc1133;
+  --color-loss-dim: #aa0022;
+  --color-loss-glow: rgba(204, 17, 51, 0.1);
+}
+
+.light-mode body::before {
+  background: none;
+}
